@@ -3,7 +3,10 @@ import React from 'react';
 class Dice extends React.Component {
     render() {
         return(
-            <div>Here go the dice! {this.props.value}</div>
+            <div>
+                <div>Die one: {this.props.eyes[0]}</div>
+                <div>Die two: {this.props.eyes[1]}</div>
+            </div>
         );
     }
 }
