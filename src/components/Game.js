@@ -8,21 +8,24 @@ class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPlayer: 'Player 1',
+            playerOne: true,
             currentEyes: [],
+            currentSum: 0,
             playerOneScore: 0,
             playerTwoScore: 0
         }
         this.newGame = this.newGame.bind(this);
         this.rollDice = this.rollDice.bind(this);
         this.hold = this.hold.bind(this);
+        this.checkForWinner = this.checkForWinner.bind(this);
     }
 
     newGame() {
         console.log('New Game!');
         this.setState({
-            currentPlayer: 'Player 1',
-            currentEyes: [],
+            playerOne: true,
+            currentEyes: [], // display on dice
+            currentSum: 0,
             playerOneScore: 0,
             playerTwoScore: 0
         })
@@ -35,46 +38,73 @@ class Game extends Component {
             const eyes = Math.floor(Math.random() * 6) + 1;
             currentEyes.push(eyes);
         }
-        console.log(this.state.currentPlayer)
         console.log(currentEyes);
         this.setState({
             currentEyes: currentEyes
         })
 
-        // if none of the dice = 1, add sum of eyes to currentPlayer's score
-        // else set currentPlayer's score = 0, other player's turn
+        let sum = 0;
+        // if nne of the dice = 1, set currentPlayer's score = 0, other player's turn
+        if (currentEyes[0] === 1 || currentEyes[1] === 1) {
+            sum = 0;
+            let currentPlayer = this.state.playerOne ? false : true
+            this.setState({
+                currentSum: 0,
+                playerOne: currentPlayer
+            })
+            
+        } else {
+            // else add sum of eyes to currentPlayer's score
+            sum = sum + currentEyes[0] + currentEyes[1]
+            this.setState({
+                currentSum: this.state.currentSum + sum,
+            })
+        }
     }
 
     hold() {
         console.log('Hold!');
         // Add currentEyes to currentPlayer's score
-
         // Switch turns between players
-        this.state.currentPlayer === 'Player 1' ?
+        this.state.playerOne ?
         this.setState({
-            currentPlayer: 'Player 2',
-        }) :
+            playerOneScore: this.state.playerOneScore + this.state.currentSum,
+            currentSum: 0,
+            playerOne: false,
+        }, () => {this.checkForWinner(this.state.playerOneScore)}) :
         this.setState({
-            currentPlayer: 'Player 1',
-        })
+            playerTwoScore: this.state.playerTwoScore + this.state.currentSum,
+            currentSum: 0,
+            playerOne: true,
+        }, () => {this.checkForWinner(this.state.playerTwoScore)})
+    }
+
+    checkForWinner() {
+        if (this.state.playerOneScore >= 100) {
+            console.log('Player 1: ' + this.state.playerOneScore)
+        } else if (this.state.playerTwoScore >= 100) {
+            console.log('Player 2: ' + this.state.playerTwoScore)
+        } 
+
+        // GAME OVER
     }
 
     render() {
-        // console.log(this.state.currentPlayer)
+        console.log(this.state)
         return (
             <div className="container">
                 <Player
-                    playerNumber={1}
-                    playerScore={43}
-                    currentScore={11}
-                    active={true}
+                    player={'Player 1'}
+                    playerScore={this.state.playerOneScore}
+                    currentScore={this.state.currentSum}
+                    active={this.state.playerOne}
                 />
 
                 <Player
-                    playerNumber={2}
-                    playerScore={72}
-                    currentScore={0}
-                    active={false}
+                    player={'Player 2'}
+                    playerScore={this.state.playerTwoScore}
+                    currentScore={this.state.currentSum}
+                    active={!this.state.playerOne}
                 />
                 <button onClick={this.newGame}>
                     <Ionicon icon="ios-add-circle-outline" />New Game
