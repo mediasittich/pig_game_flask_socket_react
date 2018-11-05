@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Ionicon from 'react-ionicons';
 import Player from './components/Player';
 import Dice from './components/Dice';
-// import logo from './logo.svg';
+
 import './App.css';
-// import Game from './components/Game';
+
 /*
   Components:
   - Game: has state
@@ -19,6 +19,7 @@ class App extends Component {
       roundScore: 0,
       activePlayer: 0,
       diceValue: 0,
+      winner: null,
       gameOn: true,
     }
 
@@ -35,6 +36,7 @@ class App extends Component {
       roundScore: 0,
       activePlayer: 0,
       diceValue: 0,
+      winner: null,
       gameOn: true,
     })
   }
@@ -74,6 +76,7 @@ class App extends Component {
       // check if activePlayer won the game
       if (updatedScores[this.state.activePlayer] >= 20) {
         this.setState({
+          winner: this.state.activePlayer,
           gameOn: false,
         });
       } else {
@@ -108,27 +111,33 @@ class App extends Component {
         playerScore={this.state.scores[number]}
         roundScore={this.state.roundScore}
         activePlayer={this.state.activePlayer}
+        winner={this.state.winner}
       />
     );
     console.log(this.state)
     return (
       <main className="App">
-
-        { playerItems }
-
-        <button onClick={this.initGame}>
+        <div className="player-panels">
+          { playerItems }
+        </div>
+        
+        <button className="btn btn-reset" onClick={this.initGame}>
           <Ionicon icon="ios-add-circle-outline" /> New game
         </button>
-        <button onClick={this.rollDice}>
+        <button className="btn btn-roll" onClick={this.rollDice}>
           <Ionicon icon="ios-sync" /> Roll dice
         </button>
-        <button onClick={this.hold}>
+        <button className="btn btn-hold" onClick={this.hold}>
           <Ionicon icon="ios-download-outline" /> Hold
         </button>
-
-        <Dice
-          eyes={this.state.diceValue}
-        />
+        
+        
+        <div className="dice-box">
+          <Dice
+            eyes={this.state.diceValue}
+          />
+        </div>
+        
       </main>
     );
   }

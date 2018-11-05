@@ -1,0 +1,66 @@
+.die {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(#fefefe, #f1f1f1 80%);
+    border-radius: 5px;
+    border-top: 1px solid #f1f1f1;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, .2);
+    margin: 10px auto;
+    /* margin: 10px; */
+    font-size: 6px;
+    position: relative;
+    /* border: 2px solid salmon; */
+}
+
+.eyes-1 .eye {
+    box-shadow: 0 .2em 0 #fff;
+}
+.eyes-2 .eye {
+    background: transparent;
+    box-shadow: -4.3em -4.3em 0 var(--accent-color),
+                4.3em 4.3em 0 var(--accent-color),
+                0 .2em 0 #fff;
+}
+.eyes-3 .eye {
+    box-shadow: -4.3em -4.3em 0 var(--accent-color),
+                4.3em 4.3em 0 var(--accent-color),
+                0 .2em 0 #fff;
+}
+.eyes-4 .eye {
+    background: transparent;
+    box-shadow: -4.3em -4.3em 0 var(--accent-color),
+                -4.3em 4.3em 0 var(--accent-color),
+                4.3em -4.3em 0 var(--accent-color),
+                4.3em 4.3em 0 var(--accent-color),
+                0 .2em 0 #fff;
+}
+.eyes-5 .eye {
+    box-shadow: -4.3em -4.3em 0 var(--accent-color),
+                -4.3em 4.3em 0 var(--accent-color),
+                4.3em -4.3em 0 var(--accent-color),
+                4.3em 4.3em 0 var(--accent-color),
+                0 .2em 0 #fff;
+}
+.eyes-6 .eye {
+    background: transparent;
+    box-shadow: -4.3em -4.3em 0 var(--accent-color),
+                -4.3em 0 0 var(--accent-color),
+                -4.3em 4.3em 0 var(--accent-color),
+                4.3em -4.3em 0 var(--accent-color),
+                4.3em 0 0 var(--accent-color),
+                4.3em 4.3em 0 var(--accent-color),
+                0 .2em 0 #fff;
+}
+
+.eye {
+    position: absolute;
+    display: block;
+    width: 15%;
+    height: 15%;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
