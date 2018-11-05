@@ -68,7 +68,7 @@ class App extends Component {
       });
 
       // check if activePlayer won the game
-      if (updatedScores[this.state.activePlayer] >= 20) {
+      if (updatedScores[this.state.activePlayer] >= 100) {
         this.setState({
           winner: this.state.activePlayer,
           gameOn: false,
