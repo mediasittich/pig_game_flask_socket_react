@@ -5,12 +5,6 @@ import Dice from './components/Dice';
 
 import './App.css';
 
-/*
-  Components:
-  - Game: has state
-  - Player: get's props from Game
-  - Dice: 
-*/
 class App extends Component {
   constructor(props) {
     super(props);

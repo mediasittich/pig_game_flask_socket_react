@@ -4,15 +4,11 @@
   --primary-color: rgb(0, 150, 136);
   --primary-color-light: rgb(178, 223, 219);
   --accent-color: rgb(229, 57, 53);
-  /* --primary-color: #EB4D4D;; */
   --primary-text: rgb(33, 33, 33);
   --secondary-text: rgb(117, 117, 117);
   --divider-color: rgb(189, 189, 189);
   --divider-color-bg: rgba(189, 189, 189, .2);
   --text-inverse: rgb(255, 255, 255);
-  /* --text-color: #212121;
-  --text-color-light: #555555;
-  --text-inverse: #FAFAFA; */
 }
 
 * {
