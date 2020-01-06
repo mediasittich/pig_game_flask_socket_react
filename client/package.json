@@ -1,5 +1,5 @@
 {
-  "name": "pig-game",
+  "name": "pig_game_flask_socket_react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
